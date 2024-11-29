@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scooby Forum</title>
+  
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/ad7c647c34.js" crossorigin="anonymous"></script>
 
@@ -16,212 +17,259 @@
       theme: {
         extend: {
           colors: {
-            primary: "#797DFC",
+            // Expanded color palette
+            primary: {
+              DEFAULT: "#6A5ACD", // Slate Blue
+              light: "#7B68EE",   // Medium Slate Blue
+              dark: "#483D8B",    // Dark Slate Blue
+            },
+            secondary: {
+              DEFAULT: "#FF6B6B",  // Pastel Red
+              light: "#4ECDC4",    // Turquoise
+              dark: "#45B7D1",     // Bright Blue
+            },
+            accent: {
+              DEFAULT: "#FFD93D",  // Bright Yellow
+              light: "#6BCB77",    // Mint Green
+              dark: "#FF8811",     // Orange
+            },
+            background: {
+              DEFAULT: "#F7F9FC", // Light Blue-Gray
+              dark: "#1A2238",    // Dark Navy
+            }
           },
+          backgroundImage: {
+            'gradient-primary': 'linear-gradient(135deg, #6A5ACD 0%, #FF6B6B 100%)',
+            'gradient-secondary': 'linear-gradient(135deg, #4ECDC4 0%, #FFD93D 100%)',
+          },
+          boxShadow: {
+            'colorful': '0 10px 25px -5px rgba(106, 90, 205, 0.3)',
+            'vibrant': '0 4px 15px rgba(255, 107, 107, 0.2)'
+          },
+          animation: {
+            'color-pulse': 'colorPulse 3s ease-in-out infinite',
+            'gradient-shift': 'gradientShift 5s ease infinite'
+          },
+          keyframes: {
+            colorPulse: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+              '50%': { transform: 'scale(1.02)', opacity: '0.9' }
+            },
+            gradientShift: {
+              '0%, 100%': { 'background-position': '0% 50%' },
+              '50%': { 'background-position': '100% 50%' }
+            }
+          }
         },
       },
     };
   </script>
-
+  <style>
+    .bg-gradient-animated {
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-background text-background-dark">
   <!-- Navbar -->
-  <nav class="container mx-auto w-11/12 lg:w-10/12">
-    <div class="navbar bg-base-100 lg:py-8">
+  <nav class="container mx-auto w-11/12 lg:w-10/12 sticky top-0 z-50 bg-white shadow-lg">
+    <div class="navbar lg:py-4 px-2">
       <div class="flex-1">
-        <a class="btn btn-ghost text-lg md:text-2xl lg:text-4xl uppercase gap-0">Sc<img class="lg:h-12 h-5"
-            src="./images/scooby.png" />by</a>
+        <a class="btn btn-ghost text-lg md:text-2xl lg:text-3xl uppercase gap-0 hover:bg-transparent">
+          Sc<img class="lg:h-10 h-5 mx-1" src="./images/scooby.png" alt="Scooby Logo" />by
+        </a>
       </div>
-      <div class="flex-none gap-1 lg:gap-4">
+      <div class="flex-none gap-2 lg:gap-4">
         <div class="tooltip tooltip-bottom" data-tip="Home">
-          <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-            <i class="fa fa-home"></i>
+          <button class="btn btn-ghost btn-circle hover:bg-secondary-light/10 transition-all duration-300 lg:btn-lg btn-sm">
+            <i class="fa fa-home text-secondary-dark hover:text-secondary-light"></i>
           </button>
         </div>
         <div class="tooltip tooltip-bottom" data-tip="Edit">
-          <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-            <i class="fa-solid fa-pen"></i>
+          <button class="btn btn-ghost btn-circle hover:bg-accent-light/10 transition-all duration-300 lg:btn-lg btn-sm">
+            <i class="fa-solid fa-pen text-accent-dark hover:text-accent-light"></i>
           </button>
         </div>
         <div class="tooltip tooltip-bottom" data-tip="Add">
-          <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-            <i class="fa-solid fa-user-plus"></i>
+          <button class="btn btn-ghost btn-circle hover:bg-primary-light/10 transition-all duration-300 lg:btn-lg btn-sm">
+            <i class="fa-solid fa-user-plus text-primary-dark hover:text-primary-light"></i>
           </button>
         </div>
-        <div class="tooltip tooltip-bottom" data-tip="Marked">
-          <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-            <i class="fa-regular fa-flag"></i>
-          </button>
-        </div>
-        <button
-          class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full lg:px-20 px-4 bg-primary text-white hover:text-primary hover:bg-gray-200 border-none">
+        <button class="btn btn-sm md:btn-md lg:btn-lg rounded-full bg-gradient-primary text-white hover:opacity-90 transition-all duration-300 px-6 lg:px-12">
           Sign In
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- main -->
-  <main>
-    <!-- Hero section -->
-    <section class="container mx-auto w-11/12 lg:w-10/12">
-      <div class="hero min-h-96 rounded-3xl" style="background-image: url(./images/bg.png)">
-        <div class="hero-overlay rounded-3xl lg:block hidden">
-          <img class="w-full h-full" src="./images/bgbanner.png" alt="background banner" />
-        </div>
-        <div class="hero-content text-neutral-content py-12 lg:py-48 lg:flex-row flex-col gap-8 lg:gap-14">
-          <div class="lg:max-w-lg lg:space-y-8">
-            <h1 class="mb-5 text-3xl font-extrabold lg:text-6xl">
-              Welcome to the
-              <span class="bg-gradient-to-r from-primary to-black-100 text-transparent bg-clip-text">ScOOby </span>Forum
+  <!-- Main Content -->
+  <main class="overflow-hidden">
+    <!-- Hero Section -->
+    <section class="container mx-auto w-11/12 lg:w-10/12 relative">
+      <div class="hero min-h-[32rem] rounded-3xl overflow-hidden bg-gradient-animated" 
+           style="background-image: linear-gradient(135deg, #6A5ACD 0%, #FF6B6B 100%)">
+        <div class="hero-overlay bg-opacity-60 rounded-3xl"></div>
+        <div class="hero-content text-white py-12 lg:py-0 flex-col lg:flex-row gap-8 lg:gap-14 z-10 animate-color-pulse">
+          <div class="lg:max-w-lg space-y-6">
+            <h1 class="text-3xl font-bold lg:text-5xl">
+              Welcome to the 
+              <span class="bg-gradient-to-r from-accent-light to-secondary-light text-transparent bg-clip-text">ScOOby</span> Forum
             </h1>
-            <p class="mb-5 text-lg font-medium">
-              Here you can filter the posts by the latest, most popular, and
-              other type of categories, also enjoy the modern aesthetic
-              design.
+            <p class="text-base lg:text-lg font-medium opacity-90">
+              Dive into a vibrant community where creativity meets conversation. 
+              Explore, engage, and connect with diverse perspectives.
             </p>
-            <label class="input input-bordered flex items-center gap-2 w-4/5 rounded-full lg:py-8">
-              <input id="searchPosts" type="text" class="grow" placeholder="Search Here Anything..." />
-              <button onclick="handleSearchByCategory()" id="searchPostsBtn"
-                class="btn rounded-full bg-primary text-white hover:text-primary hover:bg-blue-950">
+            <div class="flex items-center space-x-4">
+              <input 
+                id="searchPosts" 
+                type="text" 
+                placeholder="Search anything..." 
+                class="input input-bordered w-full rounded-full border-secondary-light focus:ring-2 focus:ring-primary-light transition-all duration-300"
+              />
+              <button 
+                onclick="handleSearchByCategory()" 
+                id="searchPostsBtn"
+                class="btn bg-secondary-light text-white rounded-full hover:bg-secondary hover:scale-105 transition-all duration-300"
+              >
                 Search
               </button>
-            </label>
-          </div>
-          <div
-            class="lg:max-w-md bg-white h-44 lg:h-52 lg:min-w-80 w-4/5 rounded-3xl flex flex-row items-center justify-evenly text-black lg:text-lg text-xs">
-            <div class="flex flex-col gap-5">
-              <p>Registered Users</p>
-              <p>Forum</p>
-              <p>Topics</p>
-              <p>Replies</p>
             </div>
-            <div class="flex flex-col gap-5">
-              <p>01</p>
-              <p>05</p>
-              <p>01</p>
-              <p>01</p>
+          </div>
+          <div class="lg:max-w-md bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-vibrant">
+            <div class="grid grid-cols-2 gap-4 text-background-dark">
+              <div class="space-y-3">
+                <p class="font-semibold opacity-70">Registered Users</p>
+                <p class="font-semibold opacity-70">Forum</p>
+                <p class="font-semibold opacity-70">Topics</p>
+                <p class="font-semibold opacity-70">Replies</p>
+              </div>
+              <div class="space-y-3 text-right">
+                <p class="font-bold text-primary-light">01</p>
+                <p class="font-bold text-secondary-light">05</p>
+                <p class="font-bold text-accent-dark">01</p>
+                <p class="font-bold text-secondary-dark">01</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Discussion section -->
-    <section class="container mx-auto w-11/12 lg:w-10/12 my-12 lg:my-24">
-      <div class="flex lg:w-2/5 mx-auto flex-col items-center justify-center space-y-8 lg:my-12">
-        <h2 class="text-3xl lg:text-5xl font-bold text-center">
-          Let's Discuss
-        </h2>
-        <p class="opacity-60 text-center lg:text-lg font-semibold">
-          With the modern design and the latest features, you can discuss
-          whatever you want and see other people's opinions or discussions,
-          also you can see by categories and mark as read.
+    <!-- Discussion Section -->
+    <section class="container mx-auto w-11/12 lg:w-10/12 my-16 lg:my-24">
+      <div class="text-center space-y-6 max-w-2xl mx-auto">
+        <h2 class="text-4xl lg:text-5xl font-extrabold text-primary-dark">Let's Discuss</h2>
+        <p class="text-base lg:text-lg opacity-70 font-medium text-background-dark">
+          Unleash your creativity, share your insights, and connect with a community 
+          that celebrates diverse thoughts and innovative ideas.
         </p>
       </div>
-      <!-- Discussions with selections -->
-      <div class="flex lg:flex-row flex-col gap-8 my-12">
-        <div id="post-container" class="lg:w-8/12 space-y-5">
-          <!-- Demo card showing without dynamic value  -->
+
+      <div class="flex lg:flex-row flex-col gap-8 mt-12">
+        <div id="post-container" class="lg:w-8/12 space-y-6">
           <div class="flex w-full justify-center">
-            <span id="postLoader" class="loading loading-spinner loading-lg lg:mt-24 text-primary hidden"></span>
+            <span id="postLoader" class="loading loading-spinner loading-lg text-secondary-light hidden"></span>
           </div>
-          <!-- Dynamic content -->
+          <!-- Dynamic content will be loaded here -->
         </div>
+        
         <div class="lg:w-4/12">
-          <div class="p-6 space-y-4 bg-[#F3F3F5] rounded-3xl">
-            <div class="flex items-center justify-between">
-              <h4 class="font-bold text-xl">Title</h4>
-              <p class="opacity-50">
-                <i class="fa-solid fa-check-double text-green-500"></i> Mark
-                as read
-                <span id="markAsReadCounter">0</span>
+          <div class="bg-background rounded-3xl p-6 shadow-colorful">
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="text-xl font-bold text-primary-dark">Quick Reads</h4>
+              <p class="text-sm opacity-60 flex items-center">
+                <i class="fa-solid fa-check-double text-accent-light mr-2"></i>
+                Marked <span id="markAsReadCounter" class="ml-1 font-bold text-secondary-light">0</span>
               </p>
             </div>
-            <div class="space-y-4 opacity-70" id="markAsReadContainer">
-
+            <div id="markAsReadContainer" class="space-y-3">
+              <!-- Marked read items will be dynamically added -->
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Forum section -->
-    <section class="container mx-auto lg:w-10/12 w-11/12 my-8 lg:my-12">
-      <div
-        class="lg:p-16 rounded-3xl text-white bg-[#12132D] p-6 flex flex-col-reverse lg:flex-row justify-center items-center gap-8">
-        <div class="lg:space-y-8 space-y-5 lg:w-7/12">
-          <h2 class="font-extrabold text-2xl lg:text-4xl">Join Our Forum</h2>
-          <p class="opacity-60">
-            Don't forget to share your unforgettable moments with us and also
-            don't forget to join our forum to get the latest news and updates.
+    <!-- Join Forum Section -->
+    <section class="container mx-auto lg:w-10/12 w-11/12 my-16">
+      <div class="bg-gradient-secondary text-white rounded-3xl p-8 lg:p-16 flex flex-col-reverse lg:flex-row items-center gap-10">
+        <div class="lg:w-7/12 space-y-6">
+          <h2 class="text-3xl lg:text-4xl font-bold">Join Our Vibrant Community</h2>
+          <p class="opacity-80 text-base lg:text-lg">
+            Transform your ideas into meaningful conversations. 
+            Connect with passionate individuals, share your unique perspective, 
+            and be part of a dynamic, supportive network.
           </p>
-          <button
-            class="btn bg-primary text-white font-extrabold rounded-full border-none lg:px-16 lg:btn-lg hover:bg-white hover:text-primary">
+          <button class="btn bg-accent-light text-background-dark rounded-full px-8 lg:px-12 hover:bg-accent hover:text-white transition-all duration-300">
             Register Now
           </button>
         </div>
         <div class="lg:w-5/12 flex justify-end">
-          <img src="./images/joinforum.png" alt="form image" />
+          <img src="./images/joinforum.png" alt="Join Forum" class="max-w-full h-auto" />
         </div>
       </div>
     </section>
 
-    <!-- Latest post section -->
-    <section class="container mx-auto lg:w-10/12 w-11/12 *:text-center lg:my-18 my-8">
-      <div class="flex lg:w-2/5 mx-auto flex-col items-center justify-center p-4 space-y-4">
-        <h2 class="font-extrabold text-2xl lg:text-5xl">Latest Posts</h2>
-        <p class="opacity-60 font-semibold">
-          Got mind blowing ideas? Share with us and get the latest updates and
-          news too from our forum.
+    <!-- Latest Posts Section -->
+    <section class="container mx-auto lg:w-10/12 w-11/12 my-16">
+      <div class="text-center max-w-2xl mx-auto space-y-6">
+        <h2 class="text-4xl lg:text-5xl font-extrabold text-secondary-dark">Latest Posts</h2>
+        <p class="text-base lg:text-lg opacity-70 font-medium text-background-dark">
+          Discover fresh perspectives, engage with thought-provoking content, 
+          and stay at the pulse of our dynamic, ever-evolving community.
         </p>
       </div>
-      <div id="latest-post-container" class="flex gap-5 lg:flex-row flex-col items-center justify-evenly mt-10">
-
-        <span id="latestPostLoader" class="loading loading-infinity loading-lg lg:mt-24 text-primary hidden">
-
-        </span>
+      
+      <div id="latest-post-container" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-12">
+        <span id="latestPostLoader" class="loading loading-infinity loading-lg text-secondary-light hidden col-span-full text-center"></span>
+        <!-- Latest posts will be dynamically added -->
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer style="
-        background: linear-gradient(
-          180deg,
-          rgba(18, 19, 45, 0.05) 0%,
-          rgba(18, 19, 45, 0) 100%
-        );
-      " class="footer footer-center lg:py-20 py-10 bg-opacity-20 text-primary-content mt-16 lg:mt-20 text-black">
-    <aside class="lg:w-3/6 w-5/6">
-      <a class="btn btn-ghost text-xs lg:text-4xl uppercase gap-0 font-extrabold lg:mb-4">Sc<img class="lg:h-12 h-8"
-          src="./images/scooby.png" />by</a>
-      <p class="font-base font-semibold opacity-60 lg:text-xl">
-        Believing in the power of the community and the power of the people.
-        Thoughts are more powerful than anything else.
-      </p>
-    </aside>
-
-    <nav>
-      <div class="grid grid-flow-col gap-4 text-xl">
-        <a href=""><i class="fa fa-twitter"></i></a>
-        <a href=""><i class="fa fa-facebook"></i></a>
-        <a href=""><i class="fa fa-instagram"></i></a>
-        <a href=""><i class="fa fa-github"></i></a>
-      </div>
-    </nav>
-    <hr class="w-4/6 mx-auto" />
-    <div class="footer footer-center p-4 text-base-content">
-      <aside>
-        <p class="opacity-60 lg:text-lg font-semibold">
-          Copyright © 2024 - All right reserved by Mahim Zayn.
+  <footer class="bg-background-dark text-white py-16">
+    <div class="container mx-auto lg:w-10/12 w-11/12 grid lg:grid-cols-3 grid-cols-1 gap-8">
+      <div class="space-y-4 text-center lg:text-left">
+        <a class="text-3xl font-extrabold uppercase flex items-center justify-center lg:justify-start text-accent-light">
+          Sc<img class="h-10 mx-1" src="./images/scooby.png" alt="Scooby Logo" />by
+        </a>
+        <p class="opacity-70 text-base">
+          Bridging minds, celebrating diversity, and empowering conversations 
+          that inspire, challenge, and transform.
         </p>
-      </aside>
+      </div>
+      
+      <div class="space-y-4 text-center">
+        <h4 class="font-bold text-xl text-secondary-light">Quick Links</h4>
+        <ul class="space-y-2 opacity-80">
+          <li><a href="#" class="hover:text-primary-light transition-colors">Home</a></li>
+          <li><a href="#" class="hover:text-secondary-light transition-colors">Discussions</a></li>
+          <li><a href="#" class="hover:text-accent-light transition-colors">Latest Posts</a></li>
+        </ul>
+      </div>
+      
+      <div class="space-y-4 text-center lg:text-right">
+        <h4 class="font-bold text-xl text-secondary-light">Connect With Us</h4>
+        <div class="flex justify-center lg:justify-end space-x-4 text-2xl">
+          <a href="#" class="text-white/70 hover:text-primary-light transition-colors"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="text-white/70 hover:text-secondary-light transition-colors"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="text-white/70 hover:text-accent-light transition-colors"><i class="fa fa-instagram"></i></a>
+          <a href="#" class="text-white/70 hover:text-primary-light transition-colors"><i class="fa fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container mx-auto lg:w-10/12 w-11/12 mt-8 pt-4 border-t border-white/10 text-center">
+      <p class="opacity-60 text-sm">
+        © 2024 Scooby Forum. All rights reserved. Created with passion by Najib Hossain.
+      </p>
     </div>
   </footer>
+
   <!-- scripts -->
   <script src="script.js"></script>
 </body>
-
 </html>
